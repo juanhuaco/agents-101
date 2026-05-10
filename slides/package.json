@@ -10,7 +10,7 @@
     "export": "slidev export --with-clicks --output charla-ai-agents.pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^0.52.0",
+    "@slidev/cli": "^52.0.0",
     "@slidev/theme-seriph": "^0.25.0",
     "vue": "^3.5.0"
   },
