@@ -1,0 +1,14 @@
+{
+  "_comment_1": "Este archivo es un PLACEHOLDER. Reemplazalo por tus credenciales reales y renombralo a gcp-oauth.keys.json.",
+  "_comment_2": "Pasos: 1) Crear proyecto en https://console.cloud.google.com  2) Habilitar Google Calendar API  3) APIs y servicios > Credenciales > Crear credenciales > OAuth client ID > tipo 'Desktop app'  4) Bajar JSON y pegarlo acá.",
+  "_comment_3": "La primera vez que corras el agente, se abrirá el browser para autorizar. Después los tokens quedan cacheados.",
+  "installed": {
+    "client_id": "REEMPLAZAR.apps.googleusercontent.com",
+    "project_id": "REEMPLAZAR",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "REEMPLAZAR",
+    "redirect_uris": ["http://localhost"]
+  }
+}

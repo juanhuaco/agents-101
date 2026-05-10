@@ -1,0 +1,31 @@
+{
+  "name": "agents-101-agent",
+  "version": "1.0.0",
+  "description": "Asistente de Google Calendar con Mastra - demo de la charla AI Agents & MCP",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "agent": "tsx src/cli.ts",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.0.0",
+    "@mastra/core": "^0.10.0",
+    "@mastra/libsql": "^0.10.0",
+    "@mastra/mcp": "^0.10.0",
+    "@mastra/memory": "^0.10.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "mastra": "^0.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

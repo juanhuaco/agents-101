@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build / cache
+dist/
+.output/
+.cache/
+.mastra/
+.slidev/
+
+# env y secretos
+.env
+.env.local
+*.env
+
+# Google OAuth
+gcp-oauth.keys.json
+.gcp-tokens*
+.gcp-saved-tokens.json
+
+# Mastra storage (LibSQL)
+*.db
+*.db-journal
+storage/
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editores
+.vscode/
+.idea/
