@@ -15,8 +15,8 @@ export const findFreeSlot = createTool({
       .object({ startHour: z.number(), endHour: z.number() })
       .default({ startHour: 9, endHour: 18 }),
   }),
-  execute: async ({ context }) => {
-    // ... lógica que recorre los busy intervals y encuentra el gap
+  execute: async ({ durationMinutes, rangeStart, rangeEnd, busy, workingHours }) => {
+    // lógica que recorre los busy intervals y encuentra el primer gap
     return { found: true, start: '...', end: '...' };
   },
 });

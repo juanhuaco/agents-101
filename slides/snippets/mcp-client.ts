@@ -14,11 +14,12 @@ export const calendarMcp = new MCPClient({
 
 // En el agente, mezclamos tools del MCP con nuestras tools custom:
 export const briefingAgent = new Agent({
+  id: 'briefing',
   name: 'briefing-agent',
   instructions: '...',
-  model: 'anthropic/claude-sonnet-4-6',
+  model: anthropic('claude-sonnet-4-6'),
   tools: async () => ({
-    ...(await calendarMcp.getTools()), // list-events, create-event, freebusy, ...
-    findFreeSlot,                       // nuestra tool custom
+    ...(await calendarMcp.listTools()), // list-events, create-event, freebusy, ...
+    findFreeSlot,                        // nuestra tool custom
   }),
 });

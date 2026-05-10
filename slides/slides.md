@@ -488,14 +488,16 @@ Persistencia configurable (LibSQL, Postgres).
 
 ## Cómo se ve un agente
 
-```ts {all|1-2|4-9|11|all}
+```ts {all|1-3|5-11|13|all}
 import { Agent } from '@mastra/core/agent';
+import { anthropic } from '@ai-sdk/anthropic';
 import { findFreeSlot } from './tools/find-free-slot';
 
 export const briefingAgent = new Agent({
+  id: 'briefing',
   name: 'briefing-agent',
   instructions: 'Sos un asistente personal de calendario...',
-  model: 'anthropic/claude-sonnet-4-6',
+  model: anthropic('claude-sonnet-4-6'),
   tools: { findFreeSlot },
 });
 
@@ -546,12 +548,14 @@ PLAN B: branch demo-fallback con mocks; video 4min embebido.
 ```ts
 // agents/briefing-agent.ts
 import { Agent } from '@mastra/core/agent';
+import { anthropic } from '@ai-sdk/anthropic';
 import { findFreeSlot } from '../tools/find-free-slot';
 
 export const briefingAgent = new Agent({
+  id: 'briefing',
   name: 'briefing-agent',
   instructions: 'Asistente de calendario...',
-  model: 'anthropic/claude-sonnet-4-6',
+  model: anthropic('claude-sonnet-4-6'),
   tools: { findFreeSlot },
 });
 ```
@@ -615,7 +619,7 @@ export const calendarMcp = new MCPClient({
 export const briefingAgent = new Agent({
   // ...
   tools: async () => ({
-    ...(await calendarMcp.getTools()),
+    ...(await calendarMcp.listTools()),
     findFreeSlot,
   }),
 });
@@ -647,7 +651,9 @@ const briefingStep = createStep({
     schedulingIntent: z.string().optional(),
   }),
   execute: async ({ inputData }) =>
-    (await briefingAgent.generate(inputData.userMessage, { output: /*...*/ })).object,
+    (await briefingAgent.generate(inputData.userMessage, {
+      structuredOutput: { schema: /*...*/ },
+    })).object,
 });
 
 const scheduleStep = createStep({
