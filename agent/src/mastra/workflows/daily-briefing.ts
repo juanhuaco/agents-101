@@ -3,30 +3,29 @@ import { z } from 'zod';
 import { briefingAgent } from '../agents/briefing-agent';
 import { schedulerAgent } from '../agents/scheduler-agent';
 
+// Schema del handoff: lo que el agente de briefing puede pasarle al de scheduling.
+const briefingOutputSchema = z.object({
+  summary: z.string().describe('Resumen de la agenda en español, en bullets cortos.'),
+  handoff: z.boolean().describe('true si el usuario quiere crear un evento.'),
+  suggestedSlot: z
+    .object({ start: z.string(), end: z.string() })
+    .optional()
+    .describe('Slot libre encontrado, si hay.'),
+  schedulingIntent: z
+    .string()
+    .optional()
+    .describe('Descripción NL del evento a crear, con título/duración/participantes/hora.'),
+});
+
 const briefingStep = createStep({
   id: 'briefing',
-  description: 'Resume la agenda y, si corresponde, propone un slot libre para una reunión nueva.',
-  inputSchema: z.object({
-    userMessage: z.string(),
-  }),
-  outputSchema: z.object({
-    summary: z.string(),
-    handoff: z.boolean(),
-    suggestedSlot: z
-      .object({ start: z.string(), end: z.string() })
-      .optional(),
-    schedulingIntent: z.string().optional(),
-  }),
+  description:
+    'Resume la agenda y, si corresponde, propone un slot libre para una reunión nueva.',
+  inputSchema: z.object({ userMessage: z.string() }),
+  outputSchema: briefingOutputSchema,
   execute: async ({ inputData }) => {
     const result = await briefingAgent.generate(inputData.userMessage, {
-      output: z.object({
-        summary: z.string(),
-        handoff: z.boolean(),
-        suggestedSlot: z
-          .object({ start: z.string(), end: z.string() })
-          .optional(),
-        schedulingIntent: z.string().optional(),
-      }),
+      structuredOutput: { schema: briefingOutputSchema },
     });
     return result.object;
   },
@@ -34,15 +33,9 @@ const briefingStep = createStep({
 
 const scheduleStep = createStep({
   id: 'schedule',
-  description: 'Crea el evento en el calendario si el briefing identificó intent de scheduling.',
-  inputSchema: z.object({
-    summary: z.string(),
-    handoff: z.boolean(),
-    suggestedSlot: z
-      .object({ start: z.string(), end: z.string() })
-      .optional(),
-    schedulingIntent: z.string().optional(),
-  }),
+  description:
+    'Crea el evento en el calendario si el briefing identificó intent de scheduling.',
+  inputSchema: briefingOutputSchema,
   outputSchema: z.object({
     briefing: z.string(),
     schedulingResult: z.string().optional(),

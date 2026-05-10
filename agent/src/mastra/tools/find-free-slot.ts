@@ -28,9 +28,9 @@ export const findFreeSlot = createTool({
     end: z.string().optional(),
     reason: z.string().optional(),
   }),
-  execute: async ({ context }) => {
-    const { durationMinutes, rangeStart, rangeEnd, busy, workingHours } =
-      context;
+  execute: async ({ durationMinutes, rangeStart, rangeEnd, busy, workingHours }) => {
+    const busyList = busy ?? [];
+    const wh = { startHour: workingHours?.startHour ?? 9, endHour: workingHours?.endHour ?? 18 };
 
     const durationMs = durationMinutes * 60_000;
     const rangeStartMs = new Date(rangeStart).getTime();
@@ -40,14 +40,14 @@ export const findFreeSlot = createTool({
       return { found: false, reason: 'El rango es más corto que la duración pedida.' };
     }
 
-    const sortedBusy = [...busy]
+    const sortedBusy = [...busyList]
       .map(b => ({ start: new Date(b.start).getTime(), end: new Date(b.end).getTime() }))
       .sort((a, b) => a.start - b.start);
 
     const isWithinWorkingHours = (ms: number) => {
       const d = new Date(ms);
       const hour = d.getHours() + d.getMinutes() / 60;
-      return hour >= workingHours.startHour && hour + durationMinutes / 60 <= workingHours.endHour;
+      return hour >= wh.startHour && hour + durationMinutes / 60 <= wh.endHour;
     };
 
     let cursor = rangeStartMs;

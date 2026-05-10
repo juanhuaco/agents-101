@@ -1,16 +1,18 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { LibSQLStore } from '@mastra/libsql';
+import { anthropic } from '@ai-sdk/anthropic';
 import { calendarMcp } from '../mcp/google-calendar';
 import { findFreeSlot } from '../tools/find-free-slot';
 
-const MODEL_ID = process.env.MODEL_ID ?? 'anthropic/claude-sonnet-4-6';
+const MODEL_ID = process.env.MODEL_ID ?? 'claude-sonnet-4-6';
 
 const memory = new Memory({
-  storage: new LibSQLStore({ url: 'file:./storage.db' }),
+  storage: new LibSQLStore({ id: 'briefing-memory', url: 'file:./storage.db' }),
 });
 
 export const briefingAgent = new Agent({
+  id: 'briefing',
   name: 'briefing-agent',
   description:
     'Asistente de calendario que resume tu agenda y sugiere slots libres para reuniones nuevas.',
@@ -29,9 +31,9 @@ Reglas:
 - Sé breve. No expliques de más. Usá bullets cortos.
 - Si necesitás datos del calendario, llamá a las tools del MCP de Google Calendar. No inventes eventos.
 `.trim(),
-  model: MODEL_ID,
+  model: anthropic(MODEL_ID),
   tools: async () => ({
-    ...(await calendarMcp.getTools()),
+    ...(await calendarMcp.listTools()),
     findFreeSlot,
   }),
   memory,

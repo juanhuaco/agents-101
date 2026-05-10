@@ -13,5 +13,5 @@ export const mastra = new Mastra({
   workflows: {
     dailyBriefing: dailyBriefingWorkflow,
   },
-  storage: new LibSQLStore({ url: 'file:./storage.db' }),
+  storage: new LibSQLStore({ id: 'mastra-storage', url: 'file:./storage.db' }),
 });

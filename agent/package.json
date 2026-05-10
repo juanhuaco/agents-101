@@ -11,17 +11,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^1.0.0",
-    "@mastra/core": "^0.10.0",
-    "@mastra/libsql": "^0.10.0",
-    "@mastra/mcp": "^0.10.0",
-    "@mastra/memory": "^0.10.0",
+    "@ai-sdk/anthropic": "^3.0.0",
+    "@mastra/core": "^1.32.0",
+    "@mastra/libsql": "^1.10.0",
+    "@mastra/mcp": "^1.7.0",
+    "@mastra/memory": "^1.17.0",
     "dotenv": "^16.4.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
-    "mastra": "^0.10.0",
+    "mastra": "^1.8.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0"
   },
