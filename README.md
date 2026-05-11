@@ -87,7 +87,7 @@ CLI interactiva. Probá:
 - `cuándo tengo un hueco de 30 min mañana?`
 - `agendame 1:1 con Juan el viernes a las 10am`
 
-Para usar el **Mastra playground** (UI web con inspector de tools y workflows):
+Para usar el **Mastra playground** (UI web con inspector de tool calls):
 
 ```bash
 npm run dev
@@ -119,11 +119,12 @@ agents-101/
 │   └── src/
 │       ├── cli.ts                     # entrypoint interactivo
 │       └── mastra/
-│           ├── index.ts               # registra agentes y workflows
-│           ├── agents/                # briefingAgent + schedulerAgent
+│           ├── index.ts               # registro del agent
+│           ├── env.ts                 # carga .env con búsqueda upward
+│           ├── model.ts               # provider Gemini
+│           ├── agents/                # briefingAgent (único)
 │           ├── tools/                 # findFreeSlot (tool custom)
-│           ├── mcp/                   # config del MCP de Google Calendar
-│           └── workflows/             # workflow con handoff
+│           └── mcp/                   # config del MCP de Google Calendar
 └── outline_charla_ai_agents_mcp.md    # outline original de la charla
 ```
 

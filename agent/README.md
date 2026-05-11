@@ -8,10 +8,7 @@ Hace tres cosas:
 2. **Encuentra huecos libres** con la tool custom `findFreeSlot`.
 3. **Crea reuniones** en lenguaje natural, con confirmación explícita antes de tocar el calendario.
 
-Internamente son **dos agentes** colaborando vía workflow con handoff:
-
-- `briefingAgent` — lee y razona, no escribe.
-- `schedulerAgent` — crea eventos, pide confirmación.
+Es un único agente (`briefingAgent`) que combina las tools del MCP de Google Calendar (`list-events`, `create-event`, `freebusy`, etc.) con una tool custom local (`findFreeSlot`). Memoria conversacional persistente en LibSQL.
 
 ---
 
@@ -46,16 +43,15 @@ Ver el [README raíz](../README.md) para el detalle de cómo conseguir la API ke
 src/
 ├── cli.ts                       # entrypoint con readline
 └── mastra/
-    ├── index.ts                 # registro de agents y workflows
+    ├── index.ts                 # registro del agent
+    ├── env.ts                   # carga .env con búsqueda upward
+    ├── model.ts                 # provider Gemini (lee GOOGLE_GENERATIVE_AI_API_KEY)
     ├── agents/
-    │   ├── briefing-agent.ts    # lee, resume, sugiere huecos
-    │   └── scheduler-agent.ts   # crea eventos con confirmación
+    │   └── briefing-agent.ts    # único agente — lee, sugiere huecos, crea con confirmación
     ├── tools/
     │   └── find-free-slot.ts    # tool custom: gap-finding
-    ├── mcp/
-    │   └── google-calendar.ts   # MCPClient → @cocal/google-calendar-mcp
-    └── workflows/
-        └── daily-briefing.ts    # briefing → (handoff) → scheduler
+    └── mcp/
+        └── google-calendar.ts   # MCPClient → @cocal/google-calendar-mcp (con tools cacheadas)
 ```
 
 ---

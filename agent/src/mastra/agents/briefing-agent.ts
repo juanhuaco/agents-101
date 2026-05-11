@@ -2,7 +2,7 @@ import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { LibSQLStore } from '@mastra/libsql';
 import { model } from '../model';
-import { calendarMcp } from '../mcp/google-calendar';
+import { getCalendarTools } from '../mcp/google-calendar';
 import { findFreeSlot } from '../tools/find-free-slot';
 
 const memory = new Memory({
@@ -42,7 +42,7 @@ REGLAS:
 `.trim(),
   model,
   tools: async () => ({
-    ...(await calendarMcp.listTools()),
+    ...(await getCalendarTools()),
     findFreeSlot,
   }),
   memory,
