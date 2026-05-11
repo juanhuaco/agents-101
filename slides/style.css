@@ -1,0 +1,162 @@
+/* ============================================================
+   Folder IT — theme overrides para Slidev
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --folder-bg: #0a0a0a;
+  --folder-bg-soft: #1a1a1a;
+  --folder-fg: #ffffff;
+  --folder-muted: #8a8a8a;
+  --folder-orange: #ff5722;
+  --folder-orange-soft: #ffab40;
+  --folder-magenta: #c71585;
+  --folder-purple: #9c27b0;
+  --folder-cyan: #0097a7;
+  --folder-yellow: #eeff41;
+}
+
+/* Base */
+.slidev-layout {
+  font-family: 'Raleway', system-ui, -apple-system, sans-serif;
+  background-color: var(--folder-bg);
+  color: var(--folder-fg);
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--folder-fg);
+}
+
+.slidev-layout h1 { font-size: 3.4em; line-height: 1.05; }
+.slidev-layout h2 { font-size: 2.2em; font-weight: 700; }
+.slidev-layout h3 { font-size: 1.4em; font-weight: 600; color: var(--folder-orange-soft); }
+
+.slidev-layout p,
+.slidev-layout li { color: #d0d0d0; }
+
+.slidev-layout strong { color: var(--folder-orange-soft); font-weight: 700; }
+
+.slidev-layout a {
+  color: var(--folder-orange);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--folder-orange);
+}
+
+/* Code blocks */
+.slidev-layout code,
+.slidev-layout pre {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.slidev-layout pre {
+  background: #14141a !important;
+  border-left: 3px solid var(--folder-orange);
+  border-radius: 4px;
+}
+
+.slidev-layout :not(pre) > code {
+  background: #1a1a22;
+  color: var(--folder-orange-soft);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+/* Tables */
+.slidev-layout table {
+  border-collapse: collapse;
+}
+.slidev-layout th {
+  color: var(--folder-orange-soft);
+  border-bottom: 2px solid var(--folder-orange);
+}
+.slidev-layout td {
+  border-bottom: 1px solid #2a2a2a;
+}
+
+/* Listas con bullets más sutiles */
+.slidev-layout ul li::marker {
+  color: var(--folder-orange);
+}
+
+/* ============================================================
+   Cover / Divider — fondo negro con curvas decorativas
+   ============================================================ */
+
+.cover-slide,
+.divider-slide {
+  background: var(--folder-bg) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Curvas decorativas — SVG inline via ::before, evita depender del PNG */
+.cover-slide::before,
+.divider-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 60% at 70% 50%, rgba(255, 87, 34, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 30% 70%, rgba(199, 21, 133, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(156, 39, 176, 0.10) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cover-slide::after,
+.divider-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/decoration.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cover-slide > *,
+.divider-slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Easter-egg tipográficos en cover */
+.cover-tag {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+.cover-tag-one-world  { top: 8%;  left: 3%;  color: #8a8aff; background: rgba(138, 138, 255, 0.12); padding: 2px 6px; }
+.cover-tag-comment    { top: 25%; left: 14%; color: var(--folder-purple); }
+.cover-tag-usa        { bottom: 18%; left: 17%; color: var(--folder-orange); }
+.cover-tag-expand     { bottom: 30%; right: 14%; color: #d32f2f; }
+.cover-tag-welcome    { bottom: 8%;  left: 50%; color: var(--folder-magenta); writing-mode: vertical-rl; }
+
+/* ============================================================
+   Footer para slides de contenido (autor + sección)
+   ============================================================ */
+
+.slide-footer {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.6rem;
+  right: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--folder-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

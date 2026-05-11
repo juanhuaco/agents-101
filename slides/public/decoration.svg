@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#c71585" stop-opacity="0"/>
+      <stop offset="25%"  stop-color="#c71585" stop-opacity="0.85"/>
+      <stop offset="55%"  stop-color="#ff5722" stop-opacity="1"/>
+      <stop offset="80%"  stop-color="#d32f2f" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#d32f2f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#9c27b0" stop-opacity="0"/>
+      <stop offset="40%"  stop-color="#9c27b0" stop-opacity="0.7"/>
+      <stop offset="70%"  stop-color="#ff5722" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff5722" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#ffab40" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#ffab40" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffab40" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Curva principal — naranja/magenta -->
+  <path d="M -50,420 C 380,180 700,820 1050,520 C 1340,280 1660,560 2000,360"
+        fill="none" stroke="url(#g1)" stroke-width="7" stroke-linecap="round"/>
+  <!-- Curva secundaria — púrpura/naranja -->
+  <path d="M -50,560 C 380,320 700,940 1050,640 C 1340,420 1660,680 2000,500"
+        fill="none" stroke="url(#g2)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Línea fina ámbar -->
+  <path d="M -50,500 C 380,260 700,880 1050,580 C 1340,360 1660,620 2000,440"
+        fill="none" stroke="url(#g3)" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
