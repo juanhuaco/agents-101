@@ -1,11 +1,9 @@
 import { Agent } from '@mastra/core/agent';
 import { Memory } from '@mastra/memory';
 import { LibSQLStore } from '@mastra/libsql';
-import { anthropic } from '@ai-sdk/anthropic';
+import { model } from '../model';
 import { calendarMcp } from '../mcp/google-calendar';
 import { findFreeSlot } from '../tools/find-free-slot';
-
-const MODEL_ID = process.env.MODEL_ID ?? 'claude-sonnet-4-6';
 
 const memory = new Memory({
   storage: new LibSQLStore({ id: 'briefing-memory', url: 'file:./storage.db' }),
@@ -31,7 +29,7 @@ Reglas:
 - Sé breve. No expliques de más. Usá bullets cortos.
 - Si necesitás datos del calendario, llamá a las tools del MCP de Google Calendar. No inventes eventos.
 `.trim(),
-  model: anthropic(MODEL_ID),
+  model,
   tools: async () => ({
     ...(await calendarMcp.listTools()),
     findFreeSlot,

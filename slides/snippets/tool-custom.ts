@@ -1,3 +1,4 @@
+// @ts-nocheck — snippet pedagógico para slides (no se compila acá)
 // PASO 1 (bis) — Tool custom: lógica de negocio propia
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';

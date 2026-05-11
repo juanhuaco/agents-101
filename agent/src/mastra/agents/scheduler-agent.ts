@@ -1,8 +1,6 @@
 import { Agent } from '@mastra/core/agent';
-import { anthropic } from '@ai-sdk/anthropic';
+import { model } from '../model';
 import { calendarMcp } from '../mcp/google-calendar';
-
-const MODEL_ID = process.env.MODEL_ID ?? 'claude-sonnet-4-6';
 
 export const schedulerAgent = new Agent({
   id: 'scheduler',
@@ -28,6 +26,6 @@ Reglas:
 - Zona horaria por default: America/Argentina/Buenos_Aires.
 - Nombrá los eventos de forma clara: "Foco: <tema>" o "<persona> 1:1 — <tema>".
 `.trim(),
-  model: anthropic(MODEL_ID),
+  model,
   tools: async () => await calendarMcp.listTools(),
 });

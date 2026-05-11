@@ -10,9 +10,9 @@ const CYAN = '\x1b[36m';
 const GREEN = '\x1b[32m';
 
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.GOOGLE_AI_API_KEY) {
     console.error(
-      'Falta ANTHROPIC_API_KEY. Copiá .env.example a .env y pegá tu key de https://console.anthropic.com/',
+      'Falta GOOGLE_AI_API_KEY. Copiá .env.example a .env y pegá tu key de https://aistudio.google.com/apikey',
     );
     process.exit(1);
   }

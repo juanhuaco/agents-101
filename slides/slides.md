@@ -98,7 +98,7 @@ n8n = visual, low-code. Hoy: misma idea, pero con TypeScript en la mano.
 
 <v-clicks>
 
-- Modelos lo suficientemente buenos para razonar sobre tools (Claude 4.x, GPT-4.x)
+- Modelos lo suficientemente buenos para razonar sobre tools (Gemini 2.5, Claude 4.x, GPT-4.x)
 - Frameworks maduros: Mastra, LangGraph, OpenAI Agents SDK
 - **MCP** (nov 2024) está terminando de estandarizar las integraciones
 - El costo por interacción bajó 10×–100× en 18 meses
@@ -490,14 +490,14 @@ Persistencia configurable (LibSQL, Postgres).
 
 ```ts {all|1-3|5-11|13|all}
 import { Agent } from '@mastra/core/agent';
-import { anthropic } from '@ai-sdk/anthropic';
+import { google } from '@ai-sdk/google';
 import { findFreeSlot } from './tools/find-free-slot';
 
 export const briefingAgent = new Agent({
   id: 'briefing',
   name: 'briefing-agent',
   instructions: 'Sos un asistente personal de calendario...',
-  model: anthropic('claude-sonnet-4-6'),
+  model: google('gemini-2.5-flash'),
   tools: { findFreeSlot },
 });
 
@@ -548,14 +548,14 @@ PLAN B: branch demo-fallback con mocks; video 4min embebido.
 ```ts
 // agents/briefing-agent.ts
 import { Agent } from '@mastra/core/agent';
-import { anthropic } from '@ai-sdk/anthropic';
+import { google } from '@ai-sdk/google';
 import { findFreeSlot } from '../tools/find-free-slot';
 
 export const briefingAgent = new Agent({
   id: 'briefing',
   name: 'briefing-agent',
   instructions: 'Asistente de calendario...',
-  model: anthropic('claude-sonnet-4-6'),
+  model: google('gemini-2.5-flash'),
   tools: { findFreeSlot },
 });
 ```
@@ -752,7 +752,7 @@ layout: center
 - 📘 **Mastra docs**: [mastra.ai/docs](https://mastra.ai/docs)
 - 🔌 **MCP spec**: [modelcontextprotocol.io](https://modelcontextprotocol.io)
 - 🗓 **MCP de Google Calendar**: [github.com/nspady/google-calendar-mcp](https://github.com/nspady/google-calendar-mcp)
-- 🤖 **Claude API**: [console.anthropic.com](https://console.anthropic.com)
+- 🤖 **Google AI Studio**: [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
 
 </div>
 

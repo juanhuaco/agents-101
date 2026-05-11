@@ -1,6 +1,6 @@
 # /agent
 
-Asistente personal de Google Calendar construido con [Mastra](https://mastra.ai), [Claude](https://www.anthropic.com/) y el MCP server de [@cocal/google-calendar-mcp](https://github.com/nspady/google-calendar-mcp).
+Asistente personal de Google Calendar construido con [Mastra](https://mastra.ai), [Gemini](https://ai.google.dev/) (vía Google AI Studio) y el MCP server de [@cocal/google-calendar-mcp](https://github.com/nspady/google-calendar-mcp).
 
 Hace tres cosas:
 
@@ -20,12 +20,12 @@ Internamente son **dos agentes** colaborando vía workflow con handoff:
 ```bash
 npm install
 cp .env.example .env
-# editar .env → ANTHROPIC_API_KEY=sk-ant-...
+# editar .env → GOOGLE_AI_API_KEY=AIzaSy...
 # poner gcp-oauth.keys.json (ver README raíz)
 npm run agent
 ```
 
-Ver el [README raíz](../README.md) para el detalle de cómo conseguir las credenciales de Anthropic y Google.
+Ver el [README raíz](../README.md) para el detalle de cómo conseguir la API key de Google AI Studio y el OAuth de Calendar.
 
 ---
 
@@ -62,11 +62,16 @@ src/
 
 ## Modelo
 
-Por default usa `anthropic/claude-sonnet-4-6`. Para overridear:
+Por default usa `gemini-2.5-flash` (rápido y económico). Para overridear:
 
 ```bash
-MODEL_ID=anthropic/claude-opus-4-7 npm run agent
+MODEL_ID=gemini-2.5-pro npm run agent
 ```
+
+Opciones recomendadas:
+- `gemini-2.5-flash` (default) — rápido, ideal para demo en vivo
+- `gemini-2.5-pro` — más capaz, más lento
+- `gemini-2.0-flash` — alternativa con límites de rate más altos
 
 ---
 

@@ -1,3 +1,4 @@
+// @ts-nocheck — snippet pedagógico para slides (no se compila acá)
 // PASO 3 — Workflow multi-agente con handoff
 import { createWorkflow, createStep } from '@mastra/core/workflows';
 import { z } from 'zod';

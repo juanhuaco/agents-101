@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^3.0.0",
+    "@ai-sdk/google": "^3.0.0",
     "@mastra/core": "^1.32.0",
     "@mastra/libsql": "^1.10.0",
     "@mastra/mcp": "^1.7.0",
