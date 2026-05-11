@@ -1,4 +1,4 @@
-import './env';
+import 'dotenv/config';
 import { google } from '@ai-sdk/google';
 
 // Google AI Studio. El SDK lee GOOGLE_GENERATIVE_AI_API_KEY automáticamente del env.
