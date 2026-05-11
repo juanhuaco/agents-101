@@ -5,8 +5,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "agent": "tsx src/cli.ts",
-    "dev": "mastra dev",
+    "agent": "NODE_OPTIONS='--disable-warning=ExperimentalWarning' tsx src/cli.ts",
+    "dev": "NODE_OPTIONS='--disable-warning=ExperimentalWarning' mastra dev",
     "build": "mastra build",
     "typecheck": "tsc --noEmit"
   },

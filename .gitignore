@@ -19,10 +19,16 @@ gcp-oauth.keys.json
 .gcp-tokens*
 .gcp-saved-tokens.json
 
-# Mastra storage (LibSQL)
+# Mastra storage (LibSQL/SQLite) — memoria del agente, traces, evals
 *.db
 *.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite-journal
 storage/
+.mastra/
+mastra-*.log
 
 # logs
 *.log

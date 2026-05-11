@@ -28,7 +28,13 @@ async function main() {
   const resourceId = 'cli-user';
 
   while (true) {
-    const line = (await rl.question(`${BOLD}> ${RESET}`)).trim();
+    let line: string;
+    try {
+      line = (await rl.question(`${BOLD}> ${RESET}`)).trim();
+    } catch {
+      // stdin se cerró (EOF, Ctrl+D, pipe terminado) — salir limpio.
+      break;
+    }
     if (!line) continue;
     if (line === 'salir' || line === 'exit') break;
 
