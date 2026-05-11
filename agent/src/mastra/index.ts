@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import './env';
 import { Mastra } from '@mastra/core';
 import { LibSQLStore } from '@mastra/libsql';
 import { briefingAgent } from './agents/briefing-agent';

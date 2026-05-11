@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import './mastra/env';
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { mastra } from './mastra';
@@ -10,9 +10,9 @@ const CYAN = '\x1b[36m';
 const GREEN = '\x1b[32m';
 
 async function main() {
-  if (!process.env.GOOGLE_AI_API_KEY) {
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     console.error(
-      'Falta GOOGLE_AI_API_KEY. Copiá .env.example a .env y pegá tu key de https://aistudio.google.com/apikey',
+      'Falta GOOGLE_GENERATIVE_AI_API_KEY. Copiá .env.example a .env y pegá tu key de https://aistudio.google.com/apikey',
     );
     process.exit(1);
   }

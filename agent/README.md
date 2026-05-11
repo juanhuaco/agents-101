@@ -20,7 +20,7 @@ Internamente son **dos agentes** colaborando vía workflow con handoff:
 ```bash
 npm install
 cp .env.example .env
-# editar .env → GOOGLE_AI_API_KEY=AIzaSy...
+# editar .env → GOOGLE_GENERATIVE_AI_API_KEY=AIzaSy...
 # poner gcp-oauth.keys.json (ver README raíz)
 npm run agent
 ```

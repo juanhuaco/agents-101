@@ -32,7 +32,7 @@ cd agents-101
 cd agent
 npm install
 cp .env.example .env
-# editá .env y pegá tu GOOGLE_AI_API_KEY
+# editá .env y pegá tu GOOGLE_GENERATIVE_AI_API_KEY
 
 # 3. (opcional, en otra terminal) levantá las slides
 cd ../slides
@@ -52,7 +52,7 @@ Para correr el agente necesitás además configurar OAuth de Google Calendar —
 4. Pegá la key en `agent/.env`:
 
    ```env
-   GOOGLE_AI_API_KEY=AIzaSy...
+   GOOGLE_GENERATIVE_AI_API_KEY=AIzaSy...
    ```
 
 > 💡 Si vas a usar también el OAuth de Google Calendar (sección siguiente), podés reutilizar el mismo proyecto de Google Cloud para ambas cosas.
@@ -133,7 +133,7 @@ agents-101/
 
 | Síntoma | Causa probable | Solución |
 |---|---|---|
-| `GOOGLE_AI_API_KEY missing` | falta `.env` | `cp .env.example .env` y pegá tu key |
+| `GOOGLE_GENERATIVE_AI_API_KEY missing` | falta `.env` | `cp .env.example .env` y pegá tu key |
 | MCP server no arranca / cuelga | `npx` descargando paquete | esperá 30s la primera vez; o `npm i -g @cocal/google-calendar-mcp` |
 | `invalid_grant` o `token expired` | OAuth expiró | borrá `.gcp-saved-tokens.json` y re-autorizá; pasá la app a *Production* |
 | El agente "alucina" eventos | no encontró el MCP | revisá que `gcp-oauth.keys.json` exista y sea válido |

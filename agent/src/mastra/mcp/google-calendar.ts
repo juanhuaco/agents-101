@@ -1,25 +1,33 @@
 import { MCPClient } from '@mastra/mcp';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
 import { existsSync } from 'node:fs';
 
-// Resolver el path al gcp-oauth.keys.json a path ABSOLUTO en tiempo de import.
-// Importante: el child process del MCP server hereda un cwd distinto bajo `mastra dev`
-// (apunta a algo como src/mastra/public/), así que un path relativo no resuelve.
+// Resolver el path al gcp-oauth.keys.json a path ABSOLUTO.
+// Importante: bajo `mastra dev` el cwd del child process termina apuntando a
+// algo como agent/src/mastra/public/, así que un path relativo no resuelve.
+// Estrategia: usar GOOGLE_OAUTH_CREDENTIALS si está seteado; si no, escalar
+// el árbol de directorios desde cwd buscando el archivo.
 function resolveOauthPath(): string {
   const fromEnv = process.env.GOOGLE_OAUTH_CREDENTIALS;
   if (fromEnv) return resolve(fromEnv);
 
-  // Buscar en ubicaciones comunes desde el cwd actual.
-  const candidates = [
-    resolve(process.cwd(), 'gcp-oauth.keys.json'),
-    resolve(process.cwd(), 'agent/gcp-oauth.keys.json'),
-    resolve(process.cwd(), '../gcp-oauth.keys.json'),
-  ];
+  let dir = process.cwd();
+  // Escalar hasta la raíz buscando el archivo. Cubre tanto cwd=/agent como
+  // cwd=/agent/src/mastra/public bajo mastra dev.
+  while (true) {
+    const candidate = resolve(dir, 'gcp-oauth.keys.json');
+    if (existsSync(candidate)) return candidate;
 
-  for (const path of candidates) {
-    if (existsSync(path)) return path;
+    const insideAgent = resolve(dir, 'agent', 'gcp-oauth.keys.json');
+    if (existsSync(insideAgent)) return insideAgent;
+
+    const parent = dirname(dir);
+    if (parent === dir) break; // llegamos a la raíz
+    dir = parent;
   }
-  return candidates[0];
+
+  // No encontrado — devolver un default razonable para mejor mensaje de error.
+  return resolve(process.cwd(), 'gcp-oauth.keys.json');
 }
 
 const oauthPath = resolveOauthPath();
