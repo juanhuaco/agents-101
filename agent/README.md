@@ -30,8 +30,8 @@ Ver el [README raíz](../README.md) para el detalle de cómo conseguir la API ke
 
 | Script | Qué hace |
 |---|---|
-| `npm run agent` | CLI interactiva (stdin → agente). **Default para la demo.** |
-| `npm run dev`   | Mastra playground en web (puerto 4111 por default). |
+| `npm run agent` | **CLI interactiva (modo soportado).** Pre-carga el MCP de Google Calendar al startup, streaming de respuestas, mensajes de error legibles, memoria persistente entre turnos. Es lo que usamos en la demo. |
+| `npm run dev`   | Mastra Studio (UI web, `localhost:4111`). **No mantenido** — útil para curiosear, pero tiene bugs con MCP en stdio que pueden colgar la UI. Si querés un inspector de tool calls visual, adelante; si no, ignoralo. |
 | `npm run build` | Build de producción. |
 | `npm run typecheck` | `tsc --noEmit`. |
 
@@ -76,8 +76,6 @@ Opciones recomendadas:
 Si no querés configurar OAuth todavía, podés correr el agente sin el MCP — va a responder pero sin acceso al calendario:
 
 ```bash
-# comentá temporalmente el spread de calendarMcp.getTools() en briefing-agent.ts
+# comentá temporalmente el spread de calendarMcp.listTools() en briefing-agent.ts
 npm run agent
 ```
-
-(O usar la branch `demo-fallback` cuando esté lista, con tools mockeadas.)

@@ -76,22 +76,20 @@ Esta es la parte más fricciosa, pero es **una sola vez**.
 
 ## Correr el agente
 
+**Modo terminal (recomendado, único soportado):**
+
 ```bash
 cd agent
 npm run agent
 ```
 
-CLI interactiva. Probá:
+CLI interactiva con streaming, memoria persistente y mensajes de error legibles. Probá:
 
 - `qué tengo hoy?`
 - `cuándo tengo un hueco de 30 min mañana?`
 - `agendame 1:1 con Juan el viernes a las 10am`
 
-Para usar el **Mastra playground** (UI web con inspector de tool calls):
-
-```bash
-npm run dev
-```
+> El script `npm run dev` (Mastra Studio web en `localhost:4111`) está incluido pero **no se mantiene activamente** — el Studio tiene bugs conocidos con MCP servers en stdio que pueden colgar la UI. Si lo querés probar como bonus, adelante; para uso real (incluida la demo de la charla) usá `npm run agent`.
 
 ---
 
