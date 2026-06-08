@@ -1,11 +1,10 @@
 # agents-101
 
-Repo de la charla **"AI Agents & MCP para Devs"** (45 min, español, code-first).
+Repo de la charla **"Agentes en Acción: Fundamentos, MCP y Código"** (español, code-first).
 
-Incluye:
+El código de la demo: un asistente de Google Calendar hecho con **Mastra**, MCP y Gemini.
 
-- 📊 [`/slides`](./slides) — la presentación en Slidev (los 6 bloques de la charla).
-- 🤖 [`/agent`](./agent) — un asistente de Google Calendar hecho con **Mastra**, MCP y Gemini.
+- 🤖 [`/agent`](./agent) — asistente de Google Calendar.
   Lista tus reuniones, detecta huecos libres y agenda en lenguaje natural.
 
 > El agente usa la API de **Google AI Studio** (Gemini) y se conecta a tu Google Calendar vía un MCP server de la comunidad. Cada quien trae sus propias credenciales.
@@ -33,11 +32,6 @@ cd agent
 npm install
 cp .env.example .env
 # editá .env y pegá tu GOOGLE_GENERATIVE_AI_API_KEY
-
-# 3. (opcional, en otra terminal) levantá las slides
-cd ../slides
-npm install
-npm run dev   # abre http://localhost:3030
 ```
 
 Para correr el agente necesitás además configurar OAuth de Google Calendar — ver siguiente sección.
@@ -93,37 +87,20 @@ CLI interactiva con streaming, memoria persistente y mensajes de error legibles.
 
 ---
 
-## Correr las slides
-
-```bash
-cd slides
-npm run dev               # localhost:3030
-npm run export            # exporta charla-ai-agents.pdf
-npm run build             # sitio estático en dist/
-```
-
-En modo presentación, apretá **`P`** para entrar al *presenter mode* con notas y timer (perfecto para charla cronometrada).
-
----
-
 ## Estructura del repo
 
 ```
 agents-101/
-├── slides/                            # presentación Slidev
-│   ├── slides.md                      # los 6 bloques
-│   └── snippets/                      # código que se embebe en las slides
-├── agent/                             # proyecto Mastra
-│   └── src/
-│       ├── cli.ts                     # entrypoint interactivo
-│       └── mastra/
-│           ├── index.ts               # registro del agent
-│           ├── env.ts                 # carga .env con búsqueda upward
-│           ├── model.ts               # provider Gemini
-│           ├── agents/                # briefingAgent (único)
-│           ├── tools/                 # findFreeSlot (tool custom)
-│           └── mcp/                   # config del MCP de Google Calendar
-└── outline_charla_ai_agents_mcp.md    # outline original de la charla
+└── agent/                             # proyecto Mastra
+    └── src/
+        ├── cli.ts                     # entrypoint interactivo
+        └── mastra/
+            ├── index.ts               # registro del agent
+            ├── env.ts                 # carga .env con búsqueda upward
+            ├── model.ts               # provider Gemini
+            ├── agents/                # briefingAgent (único)
+            ├── tools/                 # findFreeSlot (tool custom)
+            └── mcp/                   # config del MCP de Google Calendar
 ```
 
 ---
